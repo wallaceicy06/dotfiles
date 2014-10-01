@@ -31,6 +31,9 @@ Bundle 'sickill/vim-monokai'
 Bundle 'w0ng/vim-hybrid'
 Bundle 'vim-scripts/Wombat'
 Bundle 'Lokaltog/vim-easymotion'
+Bundle 'vim-scripts/L9'
+Bundle 'vim-scripts/FuzzyFinder'
+Bundle 'Floobits/floobits-vim'
 
 " go
 filetype plugin indent off
@@ -65,6 +68,8 @@ map / <Plug>(easymotion-sn)
 omap / <Plug>(easymotion-tn)
 map n <Plug>(easymotion-next)
 map N <Plug>(easymotion-prev)
+map <Leader>f :FufFile<CR>
+map <Leader>b :FufBuffer<CR>
 
 " NERDTree options
 autocmd vimenter * if !argc() | NERDTree | endif
