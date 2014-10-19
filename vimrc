@@ -1,21 +1,21 @@
-" vundle management
-" 
-" Brief help
-" :BundleList          - list configured bundles
-" :BundleInstall(!)    - install(update) bundles
-" :BundleSearch(!) foo - search(or refresh cache first) for foo
-" :BundleClean(!)      - confirm(or auto-approve) removal of unused bundles
+" Begin vundle configuration
+
+" Vundle help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
 "
 " see :h vundle for more details or wiki for FAQ
-" NOTE: comments after Bundle command are not allowed..
+" Put your non-Plugin stuff after this line
 
 set nocompatible
 filetype off
 
-set rtp+=~/.vim/bundle/vundle
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
-Bundle 'gmarik/vundle'
+Bundle 'gmarik/Vundle.vim'
 
 " my bundles here
 Bundle 'scrooloose/nerdtree'
@@ -34,11 +34,11 @@ Bundle 'Lokaltog/vim-easymotion'
 Bundle 'vim-scripts/L9'
 Bundle 'vim-scripts/FuzzyFinder'
 
-" go
-filetype plugin indent off
-set runtimepath+=$GOROOT/misc/vim
+call vundle#end()
 
-" visual
+" End of vundle configuration
+
+" Visual settings 
 set number
 syntax on
 filetype plugin indent on
@@ -50,29 +50,30 @@ else
     au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
 endif
 
-" show whitespace as periods
-autocmd InsertEnter * syn clear EOLWS | syn match EOLWS excludenl /\s\+\%#\@!$/
-autocmd InsertLeave * syn clear EOLWS | syn match EOLWS excludenl /\s\+$/
-highlight EOLWS ctermbg=red guibg=red
-
-" tabs
+" Spacing and tabs
 set expandtab
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 
-" key mappings
+" General key mappings
 let mapleader = ","
-map <Leader>n :NERDTreeToggle<CR>
 set pastetoggle=<F4>
+
+" NERDTree options
+map <Leader>n :NERDTreeToggle<CR>
+autocmd vimenter * if !argc() | NERDTree | endif
+
+" Theme changer
 "map <C-n> :NEXTCOLOR<CR>
 "map <C-p> :PREVCOLOR<CR>
+
+" EasyMotion options 
 map / <Plug>(easymotion-sn)
 omap / <Plug>(easymotion-tn)
 map n <Plug>(easymotion-next)
 map N <Plug>(easymotion-prev)
+
+" FuzzyFinder options 
 map <Leader>f :FufFile<CR>
 map <Leader>b :FufBuffer<CR>
-
-" NERDTree options
-autocmd vimenter * if !argc() | NERDTree | endif
