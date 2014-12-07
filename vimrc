@@ -42,7 +42,7 @@ call vundle#end()
 set number
 syntax on
 filetype plugin indent on
-colorscheme ron 
+colorscheme hybrid
 set hlsearch
 if exists('+colorcolumn')
     set colorcolumn=80
