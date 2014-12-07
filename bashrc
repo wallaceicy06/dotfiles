@@ -1,3 +1,5 @@
+art_dir=~/dotfiles/art
+
 alias ls="ls -G"
 alias comp430_sql_connect="tsql -U adrice\\\\ssh2 -H classdb.ad.rice.edu -p 1433"
 alias comp430_sql_exec="bsqldb -U adrice\\\\ssh2 -S classdb.ad.rice.edu:1433"
@@ -25,3 +27,5 @@ export LSCOLORS=ExGxBxDxCxEgEdxbxgxcxd
 export SVN_EDITOR=vim
 
 export PS1="\[\e[00;32m\]\u\[\e[0m\]\[\e[00;37m\]@\[\e[0m\]\[\e[00;36m\]\h\[\e[0m\]\[\e[00;37m\]:\[\e[0m\]\[\e[01;35m\]\W\[\e[0m\]\[\e[00;37m\] > \[\e[0m\]"
+
+cat $art_dir/christmas0.txt
