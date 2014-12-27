@@ -28,4 +28,4 @@ export SVN_EDITOR=vim
 
 export PS1="\[\e[00;32m\]\u\[\e[0m\]\[\e[00;37m\]@\[\e[0m\]\[\e[00;36m\]\h\[\e[0m\]\[\e[00;37m\]:\[\e[0m\]\[\e[01;35m\]\W\[\e[0m\]\[\e[00;37m\] > \[\e[0m\]"
 
-cat $art_dir/christmas0.txt
+cat $art_dir/ski.txt
