@@ -33,6 +33,9 @@ Bundle 'vim-scripts/Wombat'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'vim-scripts/L9'
 Bundle 'vim-scripts/FuzzyFinder'
+Bundle 'kchmck/vim-coffee-script'
+Bundle 'briancollins/vim-jst'
+Bundle 'editorconfig/editorconfig-vim'
 
 call vundle#end()
 
@@ -49,6 +52,9 @@ if exists('+colorcolumn')
 else
     au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
 endif
+
+" Theming for weird filetypes
+"au BufNewFile,BufRead *.ejs set filetype=html
 
 " Spacing and tabs
 set expandtab
@@ -77,3 +83,32 @@ map N <Plug>(easymotion-prev)
 " FuzzyFinder options 
 map <Leader>f :FufFile<CR>
 map <Leader>b :FufBuffer<CR>
+
+" A script for setting ts/sw/sts
+" Set tabstop, softtabstop and shiftwidth to the same value
+command! -nargs=* Stab call Stab()
+function! Stab()
+  let l:tabstop = 1 * input('set tabstop = softtabstop = shiftwidth = ')
+  if l:tabstop > 0
+    let &l:sts = l:tabstop
+    let &l:ts = l:tabstop
+    let &l:sw = l:tabstop
+  endif
+  call SummarizeTabs()
+endfunction
+
+function! SummarizeTabs()
+  try
+    echohl ModeMsg
+    echon 'tabstop='.&l:ts
+    echon ' shiftwidth='.&l:sw
+    echon ' softtabstop='.&l:sts
+    if &l:et
+      echon ' expandtab'
+    else
+      echon ' noexpandtab'
+    endif
+  finally
+    echohl None
+  endtry
+endfunction
