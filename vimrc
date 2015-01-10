@@ -36,6 +36,7 @@ Bundle 'vim-scripts/FuzzyFinder'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'briancollins/vim-jst'
 Bundle 'editorconfig/editorconfig-vim'
+Bundle 'plasticboy/vim-markdown'
 
 call vundle#end()
 
@@ -52,6 +53,7 @@ if exists('+colorcolumn')
 else
     au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
 endif
+let g:vim_markdown_folding_disabled=1
 
 " Theming for weird filetypes
 "au BufNewFile,BufRead *.ejs set filetype=html
