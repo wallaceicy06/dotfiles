@@ -75,6 +75,10 @@ set pastetoggle=<F4>
 map <Leader>n :NERDTreeToggle<CR>
 autocmd vimenter * if !argc() | NERDTree | endif
 
+" Paste from yank register only
+map <Leader>p "0p
+map <Leader>P "0P
+
 " Theme changer
 "map <C-n> :NEXTCOLOR<CR>
 "map <C-p> :PREVCOLOR<CR>
