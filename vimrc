@@ -55,6 +55,9 @@ else
 endif
 let g:vim_markdown_folding_disabled=1
 
+" Mouse enabled for xterm shells
+set mouse=a
+
 " Theming for weird filetypes
 "au BufNewFile,BufRead *.ejs set filetype=html
 
