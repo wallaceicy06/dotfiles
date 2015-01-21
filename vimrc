@@ -37,12 +37,15 @@ Bundle 'kchmck/vim-coffee-script'
 Bundle 'briancollins/vim-jst'
 Bundle 'editorconfig/editorconfig-vim'
 Bundle 'plasticboy/vim-markdown'
+Bundle 'majutsushi/tagbar'
+Bundle 'bling/vim-airline'
+Bundle 'tpope/vim-fugitive'
 
 call vundle#end()
 
 " End of vundle configuration
 
-" Visual settings 
+" Visual settings
 set number
 syntax on
 filetype plugin indent on
@@ -54,6 +57,8 @@ else
     au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
 endif
 let g:vim_markdown_folding_disabled=1
+set laststatus=2
+let g:airline_powerline_fonts=1
 
 " Mouse enabled for xterm shells
 set mouse=a
@@ -83,15 +88,22 @@ map <Leader>P "0P
 "map <C-n> :NEXTCOLOR<CR>
 "map <C-p> :PREVCOLOR<CR>
 
-" EasyMotion options 
+" EasyMotion options
 map / <Plug>(easymotion-sn)
 omap / <Plug>(easymotion-tn)
 map n <Plug>(easymotion-next)
 map N <Plug>(easymotion-prev)
 
-" FuzzyFinder options 
+" FuzzyFinder options
 map <Leader>f :FufFile<CR>
 map <Leader>b :FufBuffer<CR>
+
+" Tagbar options
+map <Leader>t :TagbarToggle<CR>
+
+" Remove whitesace on save
+autocmd BufWritePre * :%s/\s\+$//e
+
 
 " A script for setting ts/sw/sts
 " Set tabstop, softtabstop and shiftwidth to the same value
