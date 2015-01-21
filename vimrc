@@ -33,12 +33,19 @@ Bundle 'vim-scripts/Wombat'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'vim-scripts/L9'
 Bundle 'vim-scripts/FuzzyFinder'
+Bundle 'kchmck/vim-coffee-script'
+Bundle 'briancollins/vim-jst'
+Bundle 'editorconfig/editorconfig-vim'
+Bundle 'plasticboy/vim-markdown'
+Bundle 'majutsushi/tagbar'
+Bundle 'bling/vim-airline'
+Bundle 'tpope/vim-fugitive'
 
 call vundle#end()
 
 " End of vundle configuration
 
-" Visual settings 
+" Visual settings
 set number
 syntax on
 filetype plugin indent on
@@ -49,6 +56,15 @@ if exists('+colorcolumn')
 else
     au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
 endif
+let g:vim_markdown_folding_disabled=1
+set laststatus=2
+let g:airline_powerline_fonts=1
+
+" Mouse enabled for xterm shells
+set mouse=a
+
+" Theming for weird filetypes
+"au BufNewFile,BufRead *.ejs set filetype=html
 
 " Spacing and tabs
 set expandtab
@@ -65,16 +81,56 @@ set backspace=2
 map <Leader>n :NERDTreeToggle<CR>
 autocmd vimenter * if !argc() | NERDTree | endif
 
+" Paste from yank register only
+map <Leader>p "0p
+map <Leader>P "0P
+
 " Theme changer
 "map <C-n> :NEXTCOLOR<CR>
 "map <C-p> :PREVCOLOR<CR>
 
-" EasyMotion options 
+" EasyMotion options
 map / <Plug>(easymotion-sn)
 omap / <Plug>(easymotion-tn)
 map n <Plug>(easymotion-next)
 map N <Plug>(easymotion-prev)
 
-" FuzzyFinder options 
+" FuzzyFinder options
 map <Leader>f :FufFile<CR>
 map <Leader>b :FufBuffer<CR>
+
+" Tagbar options
+map <Leader>t :TagbarToggle<CR>
+
+" Remove whitesace on save
+autocmd BufWritePre * :%s/\s\+$//e
+
+
+" A script for setting ts/sw/sts
+" Set tabstop, softtabstop and shiftwidth to the same value
+command! -nargs=* Stab call Stab()
+function! Stab()
+  let l:tabstop = 1 * input('set tabstop = softtabstop = shiftwidth = ')
+  if l:tabstop > 0
+    let &l:sts = l:tabstop
+    let &l:ts = l:tabstop
+    let &l:sw = l:tabstop
+  endif
+  call SummarizeTabs()
+endfunction
+
+function! SummarizeTabs()
+  try
+    echohl ModeMsg
+    echon 'tabstop='.&l:ts
+    echon ' shiftwidth='.&l:sw
+    echon ' softtabstop='.&l:sts
+    if &l:et
+      echon ' expandtab'
+    else
+      echon ' noexpandtab'
+    endif
+  finally
+    echohl None
+  endtry
+endfunction
