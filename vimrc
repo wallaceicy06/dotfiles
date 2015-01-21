@@ -42,7 +42,7 @@ call vundle#end()
 set number
 syntax on
 filetype plugin indent on
-colorscheme ron 
+colorscheme hybrid
 set hlsearch
 if exists('+colorcolumn')
     set colorcolumn=80
@@ -59,6 +59,7 @@ set softtabstop=4
 " General key mappings
 let mapleader = ","
 set pastetoggle=<F4>
+set backspace=2
 
 " NERDTree options
 map <Leader>n :NERDTreeToggle<CR>
