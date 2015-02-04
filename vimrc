@@ -80,6 +80,9 @@ set pastetoggle=<F4>
 map <Leader>n :NERDTreeToggle<CR>
 autocmd vimenter * if !argc() | NERDTree | endif
 
+" NERDCommenter options
+let NERDSpaceDelims=1
+
 " Paste from yank register only
 map <Leader>p "0p
 map <Leader>P "0P
