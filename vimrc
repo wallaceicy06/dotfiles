@@ -75,6 +75,7 @@ set softtabstop=4
 " General key mappings
 let mapleader = ","
 set pastetoggle=<F4>
+set backspace=2
 
 " NERDTree options
 map <Leader>n :NERDTreeToggle<CR>
