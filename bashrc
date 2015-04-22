@@ -24,7 +24,7 @@ export CLICOLOR=1
 # Linux-Like colors
 export LSCOLORS=ExGxBxDxCxEgEdxbxgxcxd
 
-export SVN_EDITOR=vim
+export EDITOR=vim
 
 export PS1="\[\e[00;32m\]\u\[\e[0m\]\[\e[00;37m\]@\[\e[0m\]\[\e[00;36m\]\h\[\e[0m\]\[\e[00;37m\]:\[\e[0m\]\[\e[01;35m\]\W\[\e[0m\]\[\e[00;37m\] > \[\e[0m\]"
 

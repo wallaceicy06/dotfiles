@@ -36,9 +36,9 @@ Bundle 'vim-scripts/FuzzyFinder'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'briancollins/vim-jst'
 Bundle 'editorconfig/editorconfig-vim'
+Bundle 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
 Bundle 'plasticboy/vim-markdown'
 Bundle 'majutsushi/tagbar'
-Bundle 'bling/vim-airline'
 Bundle 'tpope/vim-fugitive'
 
 call vundle#end()
@@ -58,7 +58,7 @@ else
 endif
 let g:vim_markdown_folding_disabled=1
 set laststatus=2
-let g:airline_powerline_fonts=1
+" let g:airline_powerline_fonts=1
 
 " Mouse enabled for xterm shells
 set mouse=a
