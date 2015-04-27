@@ -107,7 +107,7 @@ map <Leader>t :TagbarToggle<CR>
 let g:tagbar_left = 1
 
 " Remove whitesace on save
-autocmd BufWritePre * :%s/\s\+$//e
+" autocmd BufWritePre * :%s/\s\+$//e
 
 
 " A script for setting ts/sw/sts
