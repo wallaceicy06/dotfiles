@@ -18,6 +18,9 @@ echo "Creating $olddir for backup of any existing dotfiles in ~"
 mkdir -p $olddir
 echo "...done"
 
+# install oh-my-zsh
+curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | ZSH=$dir/zsh sh
+
 # change to the dotfiles directory
 echo "Changing to the $dir directory"
 cd $dir
