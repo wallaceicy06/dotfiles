@@ -10,8 +10,7 @@ alias c++="c++-4.9"
 
 export TERM=xterm-256color
 
-source /usr/local/etc/bash_completion.d/git-prompt.sh
-source /usr/local/etc/bash_completion.d/git-completion.bash
+source /usr/local/etc/bash_completion.d/*
 
 # SQL Server version
 export TDSVER=8.0
@@ -28,6 +27,7 @@ export EDITOR=vim
 
 export PS1="\[\e[00;32m\]\u\[\e[0m\]\[\e[00;37m\]@\[\e[0m\]\[\e[00;36m\]\h\[\e[0m\]\[\e[00;37m\]:\[\e[0m\]\[\e[01;35m\]\W\[\e[0m\]\[\e[00;37m\] > \[\e[0m\]"
 
-cat $art_dir/riceowls.txt
+cat $art_dir/eiffel.txt
+
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
