@@ -15,31 +15,32 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
-Bundle 'gmarik/Vundle.vim'
+Plugin 'gmarik/Vundle.vim'
 
 " my bundles here
-Bundle 'scrooloose/nerdtree'
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'vim-scripts/ScrollColors'
-Bundle 'tomasr/molokai'
-Bundle 'nanotech/jellybeans.vim'
-Bundle 'kien/ctrlp.vim'
-Bundle 'vim-scripts/candycode.vim'
-Bundle 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'sickill/vim-monokai'
-Bundle 'w0ng/vim-hybrid'
-Bundle 'vim-scripts/Wombat'
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'vim-scripts/L9'
-Bundle 'vim-scripts/FuzzyFinder'
-Bundle 'kchmck/vim-coffee-script'
-Bundle 'briancollins/vim-jst'
-Bundle 'editorconfig/editorconfig-vim'
-Bundle 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
-Bundle 'plasticboy/vim-markdown'
-Bundle 'majutsushi/tagbar'
-Bundle 'tpope/vim-fugitive'
+Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'vim-scripts/ScrollColors'
+Plugin 'tomasr/molokai'
+Plugin 'nanotech/jellybeans.vim'
+Plugin 'kien/ctrlp.vim'
+Plugin 'vim-scripts/candycode.vim'
+Plugin 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'sickill/vim-monokai'
+Plugin 'w0ng/vim-hybrid'
+Plugin 'vim-scripts/Wombat'
+Plugin 'Lokaltog/vim-easymotion'
+Plugin 'vim-scripts/L9'
+Plugin 'vim-scripts/FuzzyFinder'
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'briancollins/vim-jst'
+Plugin 'editorconfig/editorconfig-vim'
+Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
+Plugin 'plasticboy/vim-markdown'
+Plugin 'majutsushi/tagbar'
+Plugin 'tpope/vim-fugitive'
+Plugin 'mustache/vim-mustache-handlebars'
 
 call vundle#end()
 
