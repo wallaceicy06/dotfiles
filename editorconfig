@@ -1,0 +1,7 @@
+# Root editorconfig file with defaults
+
+root = true
+
+[*]
+end_of_line = lf
+charset = utf-8
