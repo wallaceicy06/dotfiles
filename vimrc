@@ -41,6 +41,7 @@ Plugin 'plasticboy/vim-markdown'
 Plugin 'majutsushi/tagbar'
 Plugin 'tpope/vim-fugitive'
 Plugin 'mustache/vim-mustache-handlebars'
+Plugin 'Chiel92/vim-autoformat'
 
 call vundle#end()
 
@@ -106,10 +107,6 @@ map <Leader>b :FufBuffer<CR>
 " Tagbar options
 map <Leader>t :TagbarToggle<CR>
 let g:tagbar_left = 1
-
-" Remove whitesace on save
-" autocmd BufWritePre * :%s/\s\+$//e
-
 
 " A script for setting ts/sw/sts
 " Set tabstop, softtabstop and shiftwidth to the same value
