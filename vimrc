@@ -108,6 +108,14 @@ map <Leader>b :FufBuffer<CR>
 map <Leader>t :TagbarToggle<CR>
 let g:tagbar_left = 1
 
+" C formatting options
+let g:formatprg_c = "astyle"
+let g:formatprg_args_c = "--style=otbs"
+
+" C++ formatting options
+let g:formatprg_cpp = "astyle"
+let g:formatprg_args_cpp = "--style=otbs"
+
 " A script for setting ts/sw/sts
 " Set tabstop, softtabstop and shiftwidth to the same value
 command! -nargs=* Stab call Stab()
