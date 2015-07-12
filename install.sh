@@ -16,7 +16,8 @@ files=(vimrc
        bashrc 
        tmux.conf 
        zshrc
-       editorconfig)
+       editorconfig
+       rtorrentrc)
 
 #####
 
