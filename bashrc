@@ -1,4 +1,4 @@
-art_dir=~/dotfiles/art
+art_dir=~/.dotfiles/art
 
 alias ls="ls -G"
 alias comp430_sql_connect="tsql -U adrice\\\\ssh2 -H classdb.ad.rice.edu -p 1433"
