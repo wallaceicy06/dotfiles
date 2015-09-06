@@ -58,7 +58,9 @@ export PATH="/usr/local/heroku/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:
 source $ZSH/oh-my-zsh.sh
 
 # Google specific zsh configuration
-source ~/.zshrc_google
+if [ -f "~/.zshrc_google" ]; then
+    source ~/.zshrc_google
+fi
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
