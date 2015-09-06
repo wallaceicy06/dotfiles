@@ -1,4 +1,11 @@
-art_dir=~/dotfiles/art
+# constant declarations
+art_dir=~/.dotfiles/art
+
+if [ "$(uname)" == "Darwin" ]; then
+    bash_completion_dir=/usr/local/etc/bash_completion.d/*
+elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+    bash_completion_dir=/etc/bash_completion.d/*
+fi
 
 alias ls="ls -G"
 alias comp430_sql_connect="tsql -U adrice\\\\ssh2 -H classdb.ad.rice.edu -p 1433"
@@ -10,7 +17,7 @@ alias c++="c++-4.9"
 
 export TERM=xterm-256color
 
-source /usr/local/etc/bash_completion.d/*
+source $bash_completion_dir
 
 # SQL Server version
 export TDSVER=8.0
