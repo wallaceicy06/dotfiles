@@ -50,8 +50,9 @@ call vundle#end()
 " Visual settings
 set number
 syntax on
-filetype plugin indent on
+set background=dark
 colorscheme hybrid
+filetype plugin indent on
 set hlsearch
 if exists('+colorcolumn')
     set colorcolumn=80
@@ -144,3 +145,4 @@ function! SummarizeTabs()
     echohl None
   endtry
 endfunction
+
