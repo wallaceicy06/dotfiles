@@ -42,6 +42,7 @@ Plugin 'majutsushi/tagbar'
 Plugin 'tpope/vim-fugitive'
 Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'Chiel92/vim-autoformat'
+Plugin 'tpope/vim-surround'
 
 call vundle#end()
 
