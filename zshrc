@@ -3,6 +3,7 @@ export ZSH=~/.dotfiles/zsh
 
 # set terminal to 256 colors
 export TERM=xterm-256color
+[ -n "$TMUX" ] && export TERM=screen-256color
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/

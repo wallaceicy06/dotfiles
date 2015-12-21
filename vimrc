@@ -21,16 +21,6 @@ if isdirectory(expand('$HOME/.vim/bundle/Vundle.vim'))
   " my bundles here
   Plugin 'scrooloose/nerdtree'
   Plugin 'scrooloose/nerdcommenter'
-  Plugin 'vim-scripts/ScrollColors'
-  Plugin 'tomasr/molokai'
-  Plugin 'nanotech/jellybeans.vim'
-  Plugin 'kien/ctrlp.vim'
-  Plugin 'vim-scripts/candycode.vim'
-  Plugin 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
-  Plugin 'altercation/vim-colors-solarized'
-  Plugin 'sickill/vim-monokai'
-  Plugin 'w0ng/vim-hybrid'
-  Plugin 'vim-scripts/Wombat'
   Plugin 'Lokaltog/vim-easymotion'
   Plugin 'vim-scripts/L9'
   Plugin 'vim-scripts/FuzzyFinder'
@@ -43,6 +33,8 @@ if isdirectory(expand('$HOME/.vim/bundle/Vundle.vim'))
   Plugin 'tpope/vim-fugitive'
   Plugin 'mustache/vim-mustache-handlebars'
   Plugin 'Chiel92/vim-autoformat'
+  Plugin 'flazz/vim-colorschemes'
+  Plugin 'mhinz/vim-signify'
 
   call vundle#end()
 else
@@ -57,7 +49,7 @@ if filereadable(expand("$HOME/.vimrc_google"))
 endif
 
 " Automatically change the working path to the path of the current file
-autocmd BufNewFile,BufEnter * silent! lcd %:p:h
+" autocmd BufNewFile,BufEnter * silent! lcd %:p:h
 
 " Visual settings
 set number
@@ -95,7 +87,7 @@ set backspace=2
 " NERDTree options
 map <Leader>n :NERDTreeToggle<CR>
 map <Leader>nf :NERDTreeFind<CR>
-autocmd vimenter * if !argc() | NERDTree | endif
+" autocmd vimenter * if !argc() | NERDTree | endif
 
 " NERDCommenter options
 let NERDSpaceDelims=1
@@ -116,6 +108,7 @@ map N <Plug>(easymotion-prev)
 
 " FuzzyFinder options
 map <Leader>f :FufFile<CR>
+map <Leader>c :FufFileWithCurrentBufferDir<CR>
 map <Leader>b :FufBuffer<CR>
 
 " Tagbar options

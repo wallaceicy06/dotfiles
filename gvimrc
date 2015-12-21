@@ -5,4 +5,5 @@ if has("gui_macvim")
 elseif has("gui_running")
   echo "Settings for GVim"
   set guifont=Inconsolata\ for\ Powerline\ Medium\ 12"
+  set guioptions -=T
 endif
