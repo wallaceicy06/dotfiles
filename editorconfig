@@ -28,8 +28,12 @@ indent_size = 2
 [*.css]
 indent_size = 2
 
-[*.js]
+[*.js, *.ts]
 indent_size = 2
 
 [*.go]
+indent_style = tab
 indent_size = 4
+
+[*.elm]
+indent_size = 2
