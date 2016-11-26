@@ -28,6 +28,7 @@ if isdirectory(expand('$HOME/.vim/bundle/Vundle.vim'))
   Plugin 'vim-scripts/FuzzyFinder'
   Plugin 'kchmck/vim-coffee-script'
   Plugin 'briancollins/vim-jst'
+  Plugin 'leafgarland/typescript-vim'
   Plugin 'editorconfig/editorconfig-vim'
   Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
   Plugin 'plasticboy/vim-markdown'
@@ -39,6 +40,8 @@ if isdirectory(expand('$HOME/.vim/bundle/Vundle.vim'))
   Plugin 'mhinz/vim-signify'
   Plugin 'tpope/vim-surround'
   Plugin 'Valloric/YouCompleteMe'
+  Plugin 'nsf/gocode', {'rtp': 'vim/'}
+  Plugin 'lambdatoast/elm.vim'
 
   call vundle#end()
 else
