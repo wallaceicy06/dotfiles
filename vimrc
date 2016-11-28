@@ -13,6 +13,8 @@ set nocompatible
 filetype off
 
 set rtp+=~/.vim/bundle/Vundle.vim
+
+call vundle#end()
 if isdirectory(expand('$HOME/.vim/bundle/Vundle.vim'))
   call vundle#begin()
 
@@ -26,6 +28,7 @@ if isdirectory(expand('$HOME/.vim/bundle/Vundle.vim'))
   Plugin 'vim-scripts/FuzzyFinder'
   Plugin 'kchmck/vim-coffee-script'
   Plugin 'briancollins/vim-jst'
+  Plugin 'leafgarland/typescript-vim'
   Plugin 'editorconfig/editorconfig-vim'
   Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
   Plugin 'plasticboy/vim-markdown'
@@ -35,6 +38,10 @@ if isdirectory(expand('$HOME/.vim/bundle/Vundle.vim'))
   Plugin 'Chiel92/vim-autoformat'
   Plugin 'flazz/vim-colorschemes'
   Plugin 'mhinz/vim-signify'
+  Plugin 'tpope/vim-surround'
+  Plugin 'Valloric/YouCompleteMe'
+  Plugin 'nsf/gocode', {'rtp': 'vim/'}
+  Plugin 'lambdatoast/elm.vim'
 
   call vundle#end()
 else
