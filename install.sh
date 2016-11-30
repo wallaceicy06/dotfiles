@@ -59,6 +59,10 @@ echo "************************************************************************"
 
 sleep 3
 
+# install oh-my-zsh
+echo -e "\n${BOLD}Installing Oh-My-Zsh...${NORMAL}"
+curl --progress-bar -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | ZSH=$dir/zsh sh
+
 # create dotfiles_old in homedir
 if ! [ -d $olddir ]; then
     echo "Creating $olddir for backup of any existing dotfiles in ~"
@@ -92,10 +96,6 @@ done
 if [ $missing_symlink_count -eq 0 ]; then
     echo -e "${BROWN}No missing symlinks to link.${NC}"
 fi
-
-# install oh-my-zsh
-echo -e "\n${BOLD}Installing Oh-My-Zsh...${NORMAL}"
-curl --progress-bar -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | ZSH=$dir/zsh sh
 
 # if Vundle is not installed, then install it.
 echo -e "\n${BOLD}Installing Vundle...${NORMAL}"
