@@ -1,55 +1,31 @@
-" Begin vundle configuration
-
-" Vundle help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
-
-set nocompatible
-filetype off
-
-set rtp+=~/.vim/bundle/Vundle.vim
-
-call vundle#end()
-if isdirectory(expand('$HOME/.vim/bundle/Vundle.vim'))
-  call vundle#begin()
-
-  Plugin 'gmarik/Vundle.vim'
-
-  " my bundles here
-  Plugin 'scrooloose/nerdtree'
-  Plugin 'scrooloose/nerdcommenter'
-  Plugin 'Lokaltog/vim-easymotion'
-  Plugin 'vim-scripts/L9'
-  Plugin 'vim-scripts/FuzzyFinder'
-  Plugin 'kchmck/vim-coffee-script'
-  Plugin 'briancollins/vim-jst'
-  Plugin 'leafgarland/typescript-vim'
-  Plugin 'editorconfig/editorconfig-vim'
-  Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
-  Plugin 'plasticboy/vim-markdown'
-  Plugin 'majutsushi/tagbar'
-  Plugin 'tpope/vim-fugitive'
-  Plugin 'mustache/vim-mustache-handlebars'
-  Plugin 'Chiel92/vim-autoformat'
-  Plugin 'flazz/vim-colorschemes'
-  Plugin 'mhinz/vim-signify'
-  Plugin 'tpope/vim-surround'
-  Plugin 'Valloric/YouCompleteMe'
-  Plugin 'nsf/gocode', {'rtp': 'vim/'}
-  Plugin 'lambdatoast/elm.vim'
-
-  call vundle#end()
+if filereadable(expand('$HOME/.vim/autoload/plug.vim'))
+    call plug#begin('$HOME/.vim/plugged')
+    Plug 'scrooloose/nerdtree'
+    Plug 'scrooloose/nerdcommenter'
+    Plug 'Lokaltog/vim-easymotion'
+    Plug 'vim-scripts/L9'
+    Plug 'vim-scripts/FuzzyFinder'
+    Plug 'kchmck/vim-coffee-script'
+    Plug 'briancollins/vim-jst'
+    Plug 'leafgarland/typescript-vim'
+    Plug 'editorconfig/editorconfig-vim'
+    Plug 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
+    Plug 'plasticboy/vim-markdown'
+    Plug 'majutsushi/tagbar'
+    Plug 'tpope/vim-fugitive'
+    Plug 'mustache/vim-mustache-handlebars'
+    Plug 'Chiel92/vim-autoformat'
+    Plug 'flazz/vim-colorschemes'
+    Plug 'mhinz/vim-signify'
+    Plug 'tpope/vim-surround'
+    Plug 'Valloric/YouCompleteMe'
+    Plug 'nsf/gocode', {'rtp': 'vim/'}
+    Plug 'lambdatoast/elm.vim'
+    call plug#end()    
 else
-  echomsg 'Vundle is not installed. You can install Vundle from'
-      \ 'https://github.com/VundleVim/Vundle.vim'
+    echomsg 'Vim Plug is not installed. You can install Vim Plug'
+          \ 'from https://github.com/junegunn/vim-plug'
 endif
-
-" End of vundle configuration
 
 if filereadable(expand("$HOME/.vimrc_google"))
   source $HOME/.vimrc_google
