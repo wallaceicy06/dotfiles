@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh installation.
-export ZSH=~/.dotfiles/zsh
+export ZSH=$HOME/.oh-my-zsh
 
 # set terminal to 256 colors
 export TERM=xterm-256color
@@ -49,12 +49,13 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git brew npm pip)
+plugins=(git npm pip)
 
 # User configuration
 
-export GOPATH="/Users/sean/Development/gocode"
-export PATH="/usr/local/heroku/bin:/usr/local/bin:${GOPATH}/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/texbin"
+export GOPATH="/Users/sean/Developer/gocode"
+export TEXPATH="/Library/TeX/texbin"
+export PATH="/usr/local/heroku/bin:/usr/local/bin:${GOPATH}/bin:/usr/bin:/bin:/usr/sbin:/sbin:${TEXPATH}"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
