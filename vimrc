@@ -9,7 +9,7 @@ if filereadable(expand('$HOME/.vim/autoload/plug.vim'))
     Plug 'briancollins/vim-jst'
     Plug 'leafgarland/typescript-vim'
     Plug 'editorconfig/editorconfig-vim'
-    Plug 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
+    Plug 'vim-airline/vim-airline'
     Plug 'plasticboy/vim-markdown'
     Plug 'majutsushi/tagbar'
     Plug 'tpope/vim-fugitive'
@@ -18,9 +18,11 @@ if filereadable(expand('$HOME/.vim/autoload/plug.vim'))
     Plug 'flazz/vim-colorschemes'
     Plug 'mhinz/vim-signify'
     Plug 'tpope/vim-surround'
-    Plug 'Valloric/YouCompleteMe'
     Plug 'nsf/gocode', {'rtp': 'vim/'}
     Plug 'lambdatoast/elm.vim'
+if !filereadable(expand("$HOME/.vimrc_google"))
+    Plug 'Valloric/YouCompleteMe'
+endif
     call plug#end()    
 else
     echomsg 'Vim Plug is not installed. You can install Vim Plug'
