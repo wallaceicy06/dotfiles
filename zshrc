@@ -53,7 +53,7 @@ plugins=(git npm pip)
 
 # User configuration
 
-export GOPATH="/Users/sean/Developer/gocode"
+export GOPATH="$HOME/Developer/gocode"
 export TEXPATH="/Library/TeX/texbin"
 export PATH="/usr/local/heroku/bin:/usr/local/bin:${GOPATH}/bin:/usr/bin:/bin:/usr/sbin:/sbin:${TEXPATH}"
 # export MANPATH="/usr/local/man:$MANPATH"
