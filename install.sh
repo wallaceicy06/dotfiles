@@ -98,7 +98,7 @@ if [ $missing_symlink_count -eq 0 ]; then
 fi
 
 # if vim-plug is not installed, then install it.
-echo -e "\n${BOLD}Installing Vundle...${NORMAL}"
+echo -e "\n${BOLD}Installing vim-plug...${NORMAL}"
 if ! [ -f ~/.vim/autoload/plug.vim ]; then
     curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
         https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
