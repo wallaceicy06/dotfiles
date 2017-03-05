@@ -61,7 +61,7 @@ sleep 3
 
 # install oh-my-zsh
 echo -e "\n${BOLD}Installing Oh-My-Zsh...${NORMAL}"
-curl --progress-bar -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | ZSH=$dir/zsh sh
+curl --progress-bar -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh
 
 # create dotfiles_old in homedir
 if ! [ -d $olddir ]; then
