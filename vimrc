@@ -20,6 +20,7 @@ if filereadable(expand('$HOME/.vim/autoload/plug.vim'))
     Plug 'tpope/vim-surround'
     Plug 'nsf/gocode', {'rtp': 'vim/'}
     Plug 'lambdatoast/elm.vim'
+    Plug 'fatih/vim-go'
 if !filereadable(expand("$HOME/.vimrc_google"))
     Plug 'Valloric/YouCompleteMe'
 endif
@@ -107,6 +108,12 @@ let g:formatprg_args_c = "--style=otbs"
 " C++ formatting options
 let g:formatprg_cpp = "astyle"
 let g:formatprg_args_cpp = "--style=otbs"
+
+" Helpers to move lines up and down
+nnoremap <C-j> :m .+1<CR>==
+nnoremap <C-k> :m .-2<CR>==
+vnoremap <C-j> :m '>+1<CR>gv=gv
+vnoremap <C-k> :m '<-2<CR>gv=gv
 
 " A script for setting ts/sw/sts
 " Set tabstop, softtabstop and shiftwidth to the same value
