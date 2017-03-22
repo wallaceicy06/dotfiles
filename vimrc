@@ -2,12 +2,10 @@ if filereadable(expand('$HOME/.vim/autoload/plug.vim'))
     call plug#begin('$HOME/.vim/plugged')
     Plug 'scrooloose/nerdtree'
     Plug 'scrooloose/nerdcommenter'
-    Plug 'Lokaltog/vim-easymotion'
+    Plug 'easymotion/vim-easymotion'
     Plug 'vim-scripts/L9'
-    Plug 'vim-scripts/FuzzyFinder'
-    Plug 'kchmck/vim-coffee-script'
+    Plug 'ctrlpvim/ctrlp.vim'
     Plug 'briancollins/vim-jst'
-    Plug 'leafgarland/typescript-vim'
     Plug 'editorconfig/editorconfig-vim'
     Plug 'vim-airline/vim-airline'
     Plug 'plasticboy/vim-markdown'
@@ -19,7 +17,6 @@ if filereadable(expand('$HOME/.vim/autoload/plug.vim'))
     Plug 'mhinz/vim-signify'
     Plug 'tpope/vim-surround'
     Plug 'nsf/gocode', {'rtp': 'vim/'}
-    Plug 'lambdatoast/elm.vim'
     Plug 'fatih/vim-go'
 if !filereadable(expand("$HOME/.vimrc_google"))
     Plug 'Valloric/YouCompleteMe'
