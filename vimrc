@@ -20,6 +20,8 @@ if filereadable(expand('$HOME/.vim/autoload/plug.vim'))
     Plug 'tpope/vim-surround'
     Plug 'nsf/gocode', {'rtp': 'vim/'}
     Plug 'lambdatoast/elm.vim'
+    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+    Plug 'vim-syntastic/syntastic'
 if !filereadable(expand("$HOME/.vimrc_google"))
     Plug 'Valloric/YouCompleteMe'
 endif
@@ -108,7 +110,14 @@ let g:formatprg_args_c = "--style=otbs"
 let g:formatprg_cpp = "astyle"
 let g:formatprg_args_cpp = "--style=otbs"
 
-" A script for setting ts/sw/sts
+" Syntastic
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+let g:syntastic_go_checkers = ['gofmt', 'govet']
+
 " Set tabstop, softtabstop and shiftwidth to the same value
 command! -nargs=* Stab call Stab()
 function! Stab()
