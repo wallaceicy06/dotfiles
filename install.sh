@@ -61,7 +61,7 @@ sleep 3
 
 # install oh-my-zsh
 echo -e "\n${BOLD}Installing Oh-My-Zsh...${NORMAL}"
-curl --progress-bar -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | ZSH=$dir/zsh sh
+curl --progress-bar -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh
 
 # create dotfiles_old in homedir
 if ! [ -d $olddir ]; then
@@ -97,17 +97,18 @@ if [ $missing_symlink_count -eq 0 ]; then
     echo -e "${BROWN}No missing symlinks to link.${NC}"
 fi
 
-# if Vundle is not installed, then install it.
-echo -e "\n${BOLD}Installing Vundle...${NORMAL}"
-if ! [ -d ~/.vim/bundle/Vundle.vim ]; then
-    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+# if vim-plug is not installed, then install it.
+echo -e "\n${BOLD}Installing vim-plug...${NORMAL}"
+if ! [ -f ~/.vim/autoload/plug.vim ]; then
+    curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 else
-    echo -e "${BROWN}You already have Vundle installed.${NC}"
+    echo -e "${BROWN}You already have vim-plug installed.${NC}"
 fi
 
 # Install Vim plugins
-echo -e "\n${BOLD}Installing Vundle plugins...${NORMAL} ${CYAN}(you may need to press ENTER)${NC}"
+echo -e "\n${BOLD}Installing vim-plug plugins...${NORMAL} ${CYAN}(you may need to press ENTER)${NC}"
 sleep 1
-vim -i NONE -c VundleUpdate -c quitall
+vim -i NONE -c PlugUpdate -c quitall
 
 echo -e "\n${GREEN}${BOLD}SUCCESS:${NORMAL}${NC} Completed bootstrapping. Cowboy up!"

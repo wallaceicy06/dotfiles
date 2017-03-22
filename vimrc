@@ -2,12 +2,10 @@ if filereadable(expand('$HOME/.vim/autoload/plug.vim'))
     call plug#begin('$HOME/.vim/plugged')
     Plug 'scrooloose/nerdtree'
     Plug 'scrooloose/nerdcommenter'
-    Plug 'Lokaltog/vim-easymotion'
+    Plug 'easymotion/vim-easymotion'
     Plug 'vim-scripts/L9'
-    Plug 'vim-scripts/FuzzyFinder'
-    Plug 'kchmck/vim-coffee-script'
+    Plug 'ctrlpvim/ctrlp.vim'
     Plug 'briancollins/vim-jst'
-    Plug 'leafgarland/typescript-vim'
     Plug 'editorconfig/editorconfig-vim'
     Plug 'vim-airline/vim-airline'
     Plug 'plasticboy/vim-markdown'
@@ -19,10 +17,10 @@ if filereadable(expand('$HOME/.vim/autoload/plug.vim'))
     Plug 'mhinz/vim-signify'
     Plug 'tpope/vim-surround'
     Plug 'nsf/gocode', {'rtp': 'vim/'}
-    Plug 'lambdatoast/elm.vim'
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
     Plug 'vim-syntastic/syntastic'
 if !filereadable(expand("$HOME/.vimrc_google"))
+    Plug 'fatih/vim-go'
     Plug 'Valloric/YouCompleteMe'
 endif
     call plug#end()    
@@ -118,6 +116,12 @@ let g:syntastic_check_on_wq = 0
 
 let g:syntastic_go_checkers = ['gofmt', 'govet']
 
+nnoremap <C-j> :m .+1<CR>==
+nnoremap <C-k> :m .-2<CR>==
+vnoremap <C-j> :m '>+1<CR>gv=gv
+vnoremap <C-k> :m '<-2<CR>gv=gv
+
+" A script for setting ts/sw/sts
 " Set tabstop, softtabstop and shiftwidth to the same value
 command! -nargs=* Stab call Stab()
 function! Stab()
