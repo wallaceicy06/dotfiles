@@ -120,20 +120,6 @@ nnoremap <C-k> :m .-2<CR>==
 vnoremap <C-j> :m '>+1<CR>gv=gv
 vnoremap <C-k> :m '<-2<CR>gv=gv
 
-let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
-      \ --ignore .git
-      \ --ignore .svn
-      \ --ignore .hg
-      \ --ignore .DS_Store
-      \ --ignore "**/*.pyc"
-      \ --ignore .git5_specs
-      \ --ignore review
-      \ -g ""'
-
-let $FZF_DEFAULT_COMMAND = join(map(copy(g:ctrlp_directories),
-        \ '''ag '' . v:val . '' --nocolor --nogroup --ignore "**/*.pyc" -g ""'''), ' ; ')
-
-
 " A script for setting ts/sw/sts
 " Set tabstop, softtabstop and shiftwidth to the same value
 command! -nargs=* Stab call Stab()
