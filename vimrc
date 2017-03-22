@@ -4,7 +4,6 @@ if filereadable(expand('$HOME/.vim/autoload/plug.vim'))
     Plug 'scrooloose/nerdcommenter'
     Plug 'easymotion/vim-easymotion'
     Plug 'vim-scripts/L9'
-    Plug 'ctrlpvim/ctrlp.vim'
     Plug 'briancollins/vim-jst'
     Plug 'editorconfig/editorconfig-vim'
     Plug 'vim-airline/vim-airline'
@@ -120,6 +119,20 @@ nnoremap <C-j> :m .+1<CR>==
 nnoremap <C-k> :m .-2<CR>==
 vnoremap <C-j> :m '>+1<CR>gv=gv
 vnoremap <C-k> :m '<-2<CR>gv=gv
+
+let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
+      \ --ignore .git
+      \ --ignore .svn
+      \ --ignore .hg
+      \ --ignore .DS_Store
+      \ --ignore "**/*.pyc"
+      \ --ignore .git5_specs
+      \ --ignore review
+      \ -g ""'
+
+let $FZF_DEFAULT_COMMAND = join(map(copy(g:ctrlp_directories),
+        \ '''ag '' . v:val . '' --nocolor --nogroup --ignore "**/*.pyc" -g ""'''), ' ; ')
+
 
 " A script for setting ts/sw/sts
 " Set tabstop, softtabstop and shiftwidth to the same value
