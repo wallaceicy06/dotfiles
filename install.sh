@@ -39,15 +39,15 @@ files=(vimrc
 # check preconditions
 if ! program_is_installed "git"; then
     echo -e "${RED}${BOLD}ERROR:${NORMAL}${NC} git must be installed."
-    exit
+    exit 1
 fi
 if ! program_is_installed "vim"; then
     echo -e "${RED}${BOLD}ERROR:${NORMAL}${NC} vim must be installed."
-    exit
+    exit 1
 fi
 if ! program_is_installed "zsh"; then
     echo -e "${RED}${BOLD}ERROR:${NORMAL}${NC} zsh must be installed."
-    exit
+    exit 1
 fi
 
 echo ""
@@ -61,7 +61,7 @@ sleep 3
 
 # install oh-my-zsh
 echo -e "\n${BOLD}Installing Oh-My-Zsh...${NORMAL}"
-curl --progress-bar -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh
+sh -c "$(curl --progress-bar -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
 # create dotfiles_old in homedir
 if ! [ -d $olddir ]; then
