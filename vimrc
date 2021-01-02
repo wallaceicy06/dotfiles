@@ -10,17 +10,15 @@ if filereadable(expand('$HOME/.vim/autoload/plug.vim'))
     Plug 'plasticboy/vim-markdown'
     Plug 'majutsushi/tagbar'
     Plug 'tpope/vim-fugitive'
-    Plug 'mustache/vim-mustache-handlebars'
     Plug 'Chiel92/vim-autoformat'
     Plug 'flazz/vim-colorschemes'
     Plug 'mhinz/vim-signify'
     Plug 'tpope/vim-surround'
-    Plug 'nsf/gocode', {'rtp': 'vim/'}
-    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+    Plug 'junegunn/fzf.vim'
     Plug 'vim-syntastic/syntastic'
 if !filereadable(expand("$HOME/.vimrc_google"))
     Plug 'fatih/vim-go'
-    Plug 'Valloric/YouCompleteMe'
 endif
     call plug#end()    
 else
@@ -80,20 +78,11 @@ let NERDSpaceDelims=1
 map <Leader>p "0p
 map <Leader>P "0P
 
-" Theme changer
-"map <C-n> :NEXTCOLOR<CR>
-"map <C-p> :PREVCOLOR<CR>
-
 " EasyMotion options
 map / <Plug>(easymotion-sn)
 omap / <Plug>(easymotion-tn)
 map n <Plug>(easymotion-next)
 map N <Plug>(easymotion-prev)
-
-" FuzzyFinder options
-map <Leader>f :FufFile<CR>
-map <Leader>c :FufFileWithCurrentBufferDir<CR>
-map <Leader>b :FufBuffer<CR>
 
 " Tagbar options
 map <Leader>t :TagbarToggle<CR>
@@ -114,6 +103,7 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
 let g:syntastic_go_checkers = ['gofmt', 'govet']
+let g:syntastic_javascript_checkers = ['eslint']
 
 nnoremap <C-j> :m .+1<CR>==
 nnoremap <C-k> :m .-2<CR>==
