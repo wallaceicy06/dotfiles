@@ -60,9 +60,9 @@ export PATH="/usr/local/heroku/bin:/usr/local/bin:${GOPATH}/bin:/usr/bin:/bin:/u
 
 source $ZSH/oh-my-zsh.sh
 
-# Google specific zsh configuration
-if [ -f "$HOME/.zshrc_google" ]; then
-    source "$HOME/.zshrc_google"
+# Work specific zsh configuration
+if [ -f "$HOME/.zshrc_work" ]; then
+    source "$HOME/.zshrc_work"
 fi
 
 # You may need to manually set your language environment
