@@ -53,9 +53,7 @@ plugins=(git npm pip)
 
 # User configuration
 
-export GOPATH="$HOME/Developer/gocode"
-export TEXPATH="/Library/TeX/texbin"
-export PATH="/usr/local/heroku/bin:/usr/local/bin:${GOPATH}/bin:/usr/bin:/bin:/usr/sbin:/sbin:${TEXPATH}"
+export PATH="/usr/local/bin:/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
@@ -68,12 +66,8 @@ fi
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
-# Preferred editor for local and remote sessions
-if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='vim'
-else
-  export EDITOR='vim'
-fi
+# Preferred editor
+export EDITOR='vim'
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
