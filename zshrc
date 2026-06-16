@@ -56,6 +56,12 @@ plugins=(git npm pip)
 export PATH="/usr/local/bin:/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
+if [[ "$(uname)" == "Darwin" ]]; then
+    # Mac-only commands here
+    export PATH="${PATH}:/opt/homebrew/bin"
+    export HOMEBREW_NO_ENV_HINTS=1
+fi
+
 source $ZSH/oh-my-zsh.sh
 
 # Work specific zsh configuration
