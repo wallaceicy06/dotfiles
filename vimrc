@@ -37,7 +37,10 @@ endif
 set number
 syntax on
 set background=dark
-colorscheme hybrid
+" If boostrapping do not try to use the colorscheme that is not installed yet.
+if !get(g:, 'bootstrap', 0)
+    colorscheme hybrid
+endif
 filetype plugin on
 set hlsearch
 if exists('+colorcolumn')

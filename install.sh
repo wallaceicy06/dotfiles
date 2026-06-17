@@ -61,7 +61,7 @@ sleep 3
 
 # install oh-my-zsh
 echo -e "\n${BOLD}Installing Oh-My-Zsh...${NORMAL}"
-sh -c "$(curl --progress-bar -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+RUNZSH=no CHSH=no sh -c "$(curl --progress-bar -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
 # create dotfiles_old in homedir
 if ! [ -d $olddir ]; then
@@ -109,6 +109,6 @@ fi
 # Install Vim plugins
 echo -e "\n${BOLD}Installing vim-plug plugins...${NORMAL} ${CYAN}(you may need to press ENTER)${NC}"
 sleep 1
-vim -i NONE -c PlugUpdate -c quitall
+vim -i NONE --cmd "let g:bootstrap=1" -c "silent! source ~/.vimrc" -c "PlugUpdate --sync" -c "qall!"
 
 echo -e "\n${GREEN}${BOLD}SUCCESS:${NORMAL}${NC} Completed bootstrapping. Cowboy up!"
