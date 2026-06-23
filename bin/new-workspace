@@ -2,6 +2,7 @@
 # Open a Claude worktree in a split tmux window:
 #   top pane  -> `cw <name>` (Claude, which creates the worktree)
 #   bottom    -> waits for the worktree dir, cd's in, then runs project setup
+#               via the new_workspace_init hook (if defined)
 # Works typed at a shell prompt or from a tmux keybinding (run-shell).
 set -euo pipefail
 
@@ -18,15 +19,13 @@ gitdir=$(git rev-parse --path-format=absolute --git-common-dir 2>/dev/null) || {
 }
 repo=$(dirname "$gitdir")
 wt="$repo/.claude/worktrees/$name"
-# Claude creates the worktree asynchronously in the top pane, and `git worktree
-# add` is still checking files out when the dir first appears. Wait for the two
-# files the setup needs -- .envrc (for direnv) and tools/bazelrc/preset.bazelrc
-# (defines the trace-build config; if missing, bazel_env fails with "Config
-# value 'trace-build' is not defined") -- so the checkout race can't silently
-# break setup. Then run the setup sequence: direnv allow, bazel_env, direnv
-# allow. Until #16242 lands, `bazel run //:bazel_env` exits 1 by design, so use
-# ';' -- each command runs regardless of the previous one's exit status.
-wait_cmd="until [ -f '$wt/.envrc' ] && [ -f '$wt/tools/bazelrc/preset.bazelrc' ]; do sleep 0.3; done; cd '$wt' && { direnv allow; bazel run //:bazel_env; direnv allow; }"
+# Claude creates the worktree asynchronously in the top pane; wait for the
+# directory to appear, cd in, then run project-specific setup. That setup is
+# kept out of this shared script: if a `new_workspace_init` shell function
+# is defined -- e.g. in a machine-local ~/.zshrc_work -- it is invoked in the
+# worktree directory. Define it there for per-repo bootstrapping (tool envs,
+# dependency installs, etc.); on machines without it, nothing extra runs.
+wait_cmd="until [ -d '$wt' ]; do sleep 0.3; done; cd '$wt' && if command -v new_workspace_init >/dev/null 2>&1; then new_workspace_init; fi"
 
 if [ -n "${TMUX:-}" ]; then
   top=$(tmux new-window -P -F '#{pane_id}' -n "$name" -c "$repo")
