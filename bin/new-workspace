@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+# Open a Claude worktree in a split tmux window:
+#   top pane  -> `cw <name>` (Claude, which creates the worktree)
+#   bottom    -> waits for the worktree dir, cd's in, then runs project setup
+# Works typed at a shell prompt or from a tmux keybinding (run-shell).
+set -euo pipefail
+
+name=${1:-}
+if [ -z "$name" ]; then
+  echo "usage: new-workspace <name>" >&2
+  exit 1
+fi
+
+# $PWD is the active pane's path whether typed or launched via run-shell.
+gitdir=$(git rev-parse --path-format=absolute --git-common-dir 2>/dev/null) || {
+  echo "new-workspace: not inside a git repository" >&2
+  exit 1
+}
+repo=$(dirname "$gitdir")
+wt="$repo/.claude/worktrees/$name"
+# Claude creates the worktree asynchronously in the top pane, and `git worktree
+# add` is still checking files out when the dir first appears. Wait for the two
+# files the setup needs -- .envrc (for direnv) and tools/bazelrc/preset.bazelrc
+# (defines the trace-build config; if missing, bazel_env fails with "Config
+# value 'trace-build' is not defined") -- so the checkout race can't silently
+# break setup. Then run the setup sequence: direnv allow, bazel_env, direnv
+# allow. Until #16242 lands, `bazel run //:bazel_env` exits 1 by design, so use
+# ';' -- each command runs regardless of the previous one's exit status.
+wait_cmd="until [ -f '$wt/.envrc' ] && [ -f '$wt/tools/bazelrc/preset.bazelrc' ]; do sleep 0.3; done; cd '$wt' && { direnv allow; bazel run //:bazel_env; direnv allow; }"
+
+if [ -n "${TMUX:-}" ]; then
+  top=$(tmux new-window -P -F '#{pane_id}' -n "$name" -c "$repo")
+  tmux send-keys -t "$top" "cw $name" Enter
+  bot=$(tmux split-window -v -P -F '#{pane_id}' -t "$top" -c "$repo")
+  tmux send-keys -t "$bot" "$wait_cmd" Enter
+  tmux select-pane -t "$top"
+else
+  tmux new-session -d -s "$name" -n "$name" -c "$repo"
+  tmux send-keys -t "$name" "cw $name" Enter
+  tmux split-window -v -t "$name" -c "$repo"
+  tmux send-keys -t "$name" "$wait_cmd" Enter
+  tmux select-pane -t "${name}.0"
+  tmux attach -t "$name"
+fi
