@@ -52,7 +52,7 @@ COMPLETION_WAITING_DOTS="true"
 plugins=(git npm pip)
 
 # User configuration
-export PATH="/usr/local/bin:/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+export PATH="${HOME}/.local/bin:/usr/local/bin:/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 if [[ "$(uname)" == "Darwin" ]]; then
