@@ -89,3 +89,7 @@ export EDITOR='vim'
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+# Open a Claude session in a new git worktree named <name> (used by the
+# new-workspace command; see bin/new-workspace).
+cw() { claude --worktree "$1" --name "${2:-$1}"; }
