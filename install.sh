@@ -97,6 +97,23 @@ if [ $missing_symlink_count -eq 0 ]; then
     echo -e "${BROWN}No missing symlinks to link.${NC}"
 fi
 
+# symlink executables from bin/ into ~/.local/bin
+echo -e "\n${BOLD}Linking bin/ scripts into ~/.local/bin...${NORMAL}"
+mkdir -p ~/.local/bin
+bin_symlink_count=0
+for script in "$dir"/bin/*; do
+    [ -e "$script" ] || continue
+    target=~/.local/bin/$(basename "$script")
+    if ! [ -L "$target" ]; then
+        echo "$(basename "$script") -> $script"
+        ln -s "$script" "$target"
+        let bin_symlink_count=bin_symlink_count+1
+    fi
+done
+if [ $bin_symlink_count -eq 0 ]; then
+    echo -e "${BROWN}No missing bin symlinks to link.${NC}"
+fi
+
 # if vim-plug is not installed, then install it.
 echo -e "\n${BOLD}Installing vim-plug...${NORMAL}"
 if ! [ -f ~/.vim/autoload/plug.vim ]; then

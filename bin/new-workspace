@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+# Open a Claude worktree in a split tmux window:
+#   top pane  -> `cw <name>` (Claude, which creates the worktree)
+#   bottom    -> waits for the worktree dir, cd's in, then runs project setup
+#               via the new_workspace_init hook (if defined)
+# Works typed at a shell prompt or from a tmux keybinding (run-shell).
+set -euo pipefail
+
+name=${1:-}
+if [ -z "$name" ]; then
+  echo "usage: new-workspace <name>" >&2
+  exit 1
+fi
+
+# $PWD is the active pane's path whether typed or launched via run-shell.
+gitdir=$(git rev-parse --path-format=absolute --git-common-dir 2>/dev/null) || {
+  echo "new-workspace: not inside a git repository" >&2
+  exit 1
+}
+repo=$(dirname "$gitdir")
+wt="$repo/.claude/worktrees/$name"
+# Claude creates the worktree asynchronously in the top pane; wait for the
+# directory to appear, cd in, then run project-specific setup. That setup is
+# kept out of this shared script: if a `new_workspace_init` shell function
+# is defined -- e.g. in a machine-local ~/.zshrc_work -- it is invoked in the
+# worktree directory. Define it there for per-repo bootstrapping (tool envs,
+# dependency installs, etc.); on machines without it, nothing extra runs.
+wait_cmd="until [ -d '$wt' ]; do sleep 0.3; done; cd '$wt' && if command -v new_workspace_init >/dev/null 2>&1; then new_workspace_init; fi"
+
+if [ -n "${TMUX:-}" ]; then
+  top=$(tmux new-window -P -F '#{pane_id}' -n "$name" -c "$repo")
+  tmux send-keys -t "$top" "cw $name" Enter
+  bot=$(tmux split-window -v -P -F '#{pane_id}' -t "$top" -c "$repo")
+  tmux send-keys -t "$bot" "$wait_cmd" Enter
+  tmux select-pane -t "$top"
+else
+  tmux new-session -d -s "$name" -n "$name" -c "$repo"
+  tmux send-keys -t "$name" "cw $name" Enter
+  tmux split-window -v -t "$name" -c "$repo"
+  tmux send-keys -t "$name" "$wait_cmd" Enter
+  tmux select-pane -t "${name}.0"
+  tmux attach -t "$name"
+fi
