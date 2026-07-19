@@ -17,6 +17,7 @@ if filereadable(expand('$HOME/.vim/autoload/plug.vim'))
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
     Plug 'junegunn/fzf.vim'
     Plug 'vim-syntastic/syntastic'
+    Plug 'ojroques/vim-oscyank', {'branch': 'main'}
 if !filereadable(expand("$HOME/.vimrc_google"))
     Plug 'fatih/vim-go'
 endif
@@ -141,3 +142,9 @@ function! SummarizeTabs()
     echohl None
   endtry
 endfunction
+
+" vim-oscyank
+nmap <leader>c <Plug>OSCYankOperator
+nmap <leader>cc <leader>c_
+vmap <leader>c <Plug>OSCYankVisual
+

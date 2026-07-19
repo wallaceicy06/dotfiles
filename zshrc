@@ -93,5 +93,9 @@ export EDITOR='vim'
 # new-workspace command; see bin/new-workspace).
 cw() { claude --worktree "$1" --name "${2:-$1}"; }
 
+osc52copy() {
+  printf "\033]52;c;$(printf '%s' "$1" | base64)\a"
+}
+
 # Clean up mouse reporting
 alias mfix="printf '\e[?1000l\e[?1001l\e[?1002l\e[?1003l\e[?1006l\e[?1015l\e[?12h\e[0 q'"
