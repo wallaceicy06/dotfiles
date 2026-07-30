@@ -7,8 +7,10 @@ set -u
 
 state=${1:-}
 
-# Match the message alone -- the payload's cwd and permission_mode also contain
-# "permission" -- to tell a real prompt from the idle nudge 60s after a turn.
+# Notification means either a permission prompt or the "still waiting" nudge 60s
+# after a turn ends. Only the message field distinguishes them: the rest of the
+# payload repeats the session's directory and permission mode, and those contain
+# the word "permission" often enough to match by accident.
 if [ "$state" = notification ]; then
     payload=$(cat)
     message=$(printf '%s' "$payload" | jq -r '.message // ""' 2>/dev/null)
@@ -20,7 +22,8 @@ if [ "$state" = notification ]; then
     esac
 fi
 
-# Tool hooks fire after Stop too, so they may report work but never clobber done.
+# A tool finishing in the background fires a hook after the turn already ended,
+# so "working" must not overwrite the done state that Stop set.
 if [ "$state" = working ]; then
     [ "$(tmux show-options -pqv -t "$TMUX_PANE" @claude_state 2>/dev/null)" = done ] && exit 0
     state=busy
@@ -37,7 +40,7 @@ else
     tmux set-option -p -t "$TMUX_PANE" @claude_state "$state" 2>/dev/null
 fi
 
-# Option changes don't dirty the status line; without this the badge lags.
+# Refresh the client so tmux picks up the state change right away.
 tmux refresh-client -S 2>/dev/null
 
 exit 0

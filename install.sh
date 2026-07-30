@@ -114,9 +114,9 @@ if [ $bin_symlink_count -eq 0 ]; then
     echo -e "${BROWN}No missing bin symlinks to link.${NC}"
 fi
 
-# symlink Claude Code's user settings (model, theme, permissions, the hooks that
-# drive the tmux status badges). Claude writes to this file itself -- /model and
-# /config land straight in the repo, which is the point, but expect diffs.
+# symlink Claude Code's user settings: model, theme, permissions, and the hooks
+# that drive the tmux status badges. Changing a setting from inside Claude (with
+# /model or /config) edits this repo's copy, so those changes show up in git.
 echo -e "\n${BOLD}Linking Claude Code settings...${NORMAL}"
 mkdir -p ~/.claude
 if [ -f ~/.claude/settings.json ] && ! [ -L ~/.claude/settings.json ]; then
