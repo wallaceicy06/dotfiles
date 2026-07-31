@@ -6,19 +6,29 @@ set -u
 [ -n "${TMUX:-}" ] && [ -n "${TMUX_PANE:-}" ] || exit 0
 
 state=${1:-}
+payload=
+
+case "$state" in notification|done) payload=$(cat) ;; esac
 
 # Notification means either a permission prompt or the "still waiting" nudge 60s
 # after a turn ends. Only the message field distinguishes them: the rest of the
 # payload repeats the session's directory and permission mode, and those contain
 # the word "permission" often enough to match by accident.
 if [ "$state" = notification ]; then
-    payload=$(cat)
     message=$(printf '%s' "$payload" | jq -r '.message // ""' 2>/dev/null)
     [ -n "$message" ] || message=$(printf '%s' "$payload" |
         sed -n 's/.*"message"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p')
     case "$message" in
         *permission*|*approve*) state=perm ;;
         *) state=done ;;
+    esac
+fi
+
+# Claude ends its turn while background agents and shells keep running, so it is
+# only your turn once the payload lists no running task.
+if [ "$state" = done ]; then
+    case "$payload" in
+        *'"status":"running"'*|*'"status": "running"'*) state=busy ;;
     esac
 fi
 

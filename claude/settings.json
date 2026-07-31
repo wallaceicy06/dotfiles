@@ -1,7 +1,5 @@
 {
-  "model": "sonnet",
-  "theme": "dark",
-  "remoteControlAtStartup": true,
+  "model": "opus[1m]",
   "hooks": {
     "SessionStart": [
       {
@@ -95,5 +93,7 @@
         ]
       }
     ]
-  }
+  },
+  "theme": "dark",
+  "remoteControlAtStartup": true
 }
