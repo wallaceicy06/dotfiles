@@ -1,5 +1,5 @@
 {
-  "model": "opus[1m]",
+  "model": "sonnet",
   "hooks": {
     "SessionStart": [
       {
@@ -94,6 +94,7 @@
       }
     ]
   },
+  "effortLevel": "high",
   "theme": "dark",
   "remoteControlAtStartup": true
 }
