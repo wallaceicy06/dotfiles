@@ -1,0 +1,56 @@
+#!/bin/sh
+# Sets @claude_state (idle | busy | done | perm) on the tmux pane running this
+# Claude session; tmux.conf renders it. Called from hooks in ~/.claude/settings.json.
+set -u
+
+[ -n "${TMUX:-}" ] && [ -n "${TMUX_PANE:-}" ] || exit 0
+
+state=${1:-}
+payload=
+
+case "$state" in notification|done) payload=$(cat) ;; esac
+
+# Notification means either a permission prompt or the "still waiting" nudge 60s
+# after a turn ends. Only the message field distinguishes them: the rest of the
+# payload repeats the session's directory and permission mode, and those contain
+# the word "permission" often enough to match by accident.
+if [ "$state" = notification ]; then
+    message=$(printf '%s' "$payload" | jq -r '.message // ""' 2>/dev/null)
+    [ -n "$message" ] || message=$(printf '%s' "$payload" |
+        sed -n 's/.*"message"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p')
+    case "$message" in
+        *permission*|*approve*) state=perm ;;
+        *) state=done ;;
+    esac
+fi
+
+# Claude ends its turn while background agents and shells keep running, so it is
+# only your turn once the payload lists no running task.
+if [ "$state" = done ]; then
+    case "$payload" in
+        *'"status":"running"'*|*'"status": "running"'*) state=busy ;;
+    esac
+fi
+
+# A tool finishing in the background fires a hook after the turn already ended,
+# so "working" must not overwrite the done state that Stop set.
+if [ "$state" = working ]; then
+    [ "$(tmux show-options -pqv -t "$TMUX_PANE" @claude_state 2>/dev/null)" = done ] && exit 0
+    state=busy
+fi
+
+# Tracing: `touch` this file to enable, `rm` to stop.
+log=$HOME/.claude/tmux-state.log
+[ -f "$log" ] && printf '%s %s %s -> %s%s\n' "$(date +%H:%M:%S)" "$TMUX_PANE" \
+    "${1:-}" "$state" "${message+ [$message]}" >>"$log"
+
+if [ "$state" = clear ]; then
+    tmux set-option -up -t "$TMUX_PANE" @claude_state 2>/dev/null
+else
+    tmux set-option -p -t "$TMUX_PANE" @claude_state "$state" 2>/dev/null
+fi
+
+# Refresh the client so tmux picks up the state change right away.
+tmux refresh-client -S 2>/dev/null
+
+exit 0

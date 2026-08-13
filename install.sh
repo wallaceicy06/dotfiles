@@ -114,6 +114,22 @@ if [ $bin_symlink_count -eq 0 ]; then
     echo -e "${BROWN}No missing bin symlinks to link.${NC}"
 fi
 
+# symlink Claude Code's user settings: model, theme, permissions, and the hooks
+# that drive the tmux status badges. Changing a setting from inside Claude (with
+# /model or /config) edits this repo's copy, so those changes show up in git.
+echo -e "\n${BOLD}Linking Claude Code settings...${NORMAL}"
+mkdir -p ~/.claude
+if [ -f ~/.claude/settings.json ] && ! [ -L ~/.claude/settings.json ]; then
+    echo "settings.json -> ~/.dotfiles_old/claude-settings.json"
+    mv ~/.claude/settings.json ~/.dotfiles_old/claude-settings.json
+fi
+if ! [ -L ~/.claude/settings.json ]; then
+    echo "~/.claude/settings.json -> $dir/claude/settings.json"
+    ln -s "$dir"/claude/settings.json ~/.claude/settings.json
+else
+    echo -e "${BROWN}Claude settings already linked.${NC}"
+fi
+
 # if vim-plug is not installed, then install it.
 echo -e "\n${BOLD}Installing vim-plug...${NORMAL}"
 if ! [ -f ~/.vim/autoload/plug.vim ]; then
