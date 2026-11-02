@@ -12,12 +12,13 @@ GREEN='\033[0;32m'
 BROWN='\033[0;33m'
 CYAN='\033[0;36m'
 
-BOLD=$(tput bold)
-NORMAL=$(tput sgr0)
+BOLD=$(tput bold 2>/dev/null)
+NORMAL=$(tput sgr0 2>/dev/null)
 
 ##### Variables
 
-dir=~/.dotfiles              # dotfiles directory
+# Note the directory that the install.sh script was launched from.
+dir="$(cd "$(dirname "$0")" && pwd)"
 olddir=~/.dotfiles_old       # old dotfiles backup directory
 
 ##### Functions
@@ -35,6 +36,15 @@ files=(vimrc
        rtorrent.rc)
 
 #####
+
+if ! program_is_installed "zsh" && program_is_installed "apt-get"; then
+    echo -e "\n${BOLD}Installing zsh...${NORMAL}"
+    sudo DEBIAN_FRONTEND=noninteractive apt-get install -y zsh
+fi
+if program_is_installed "zsh" && program_is_installed "apt-get" \
+    && [ "$(getent passwd "$(id -un)" | cut -d: -f7)" != "$(command -v zsh)" ]; then
+    sudo chsh -s "$(command -v zsh)" "$(id -un)"
+fi
 
 # check preconditions
 if ! program_is_installed "git"; then
