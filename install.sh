@@ -17,7 +17,7 @@ NORMAL=$(tput sgr0 2>/dev/null)
 
 ##### Variables
 
-# `coder dotfiles` clones to ~/.config/coderv2/dotfiles, not ~/.dotfiles.
+# Note the directory that the install.sh script was launched from.
 dir="$(cd "$(dirname "$0")" && pwd)"
 olddir=~/.dotfiles_old       # old dotfiles backup directory
 
