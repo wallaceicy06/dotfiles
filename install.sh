@@ -140,6 +140,15 @@ else
     echo -e "${BROWN}Claude settings already linked.${NC}"
 fi
 
+# Checks the file, not PATH: ~/.local/bin is often not on PATH when Coder runs
+# this script.
+echo -e "\n${BOLD}Installing Claude Code...${NORMAL}"
+if ! [ -x ~/.local/bin/claude ] && ! program_is_installed "claude"; then
+    curl -fsSL https://claude.ai/install.sh | bash
+else
+    echo -e "${BROWN}Claude Code already installed.${NC}"
+fi
+
 # if vim-plug is not installed, then install it.
 echo -e "\n${BOLD}Installing vim-plug...${NORMAL}"
 if ! [ -f ~/.vim/autoload/plug.vim ]; then
